@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Topshelf;
+using ServiceHealthReporting.Core;
 
 namespace net_topshelf_service_exposing_webapi
 {
@@ -47,6 +48,13 @@ namespace net_topshelf_service_exposing_webapi
             );
 
             app.UseWebApi(config);
+        }
+    }
+
+    public class HealthController : ServiceHealthReporting.Web.HealthController
+    {
+        public HealthController(IHealthChecksRunner healthChecksRunner) : base(healthChecksRunner)
+        {
         }
     }
 
